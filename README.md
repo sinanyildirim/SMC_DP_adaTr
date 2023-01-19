@@ -41,7 +41,13 @@ where
 - prior_params is a struct that contains the hyperparameters for the prior distributions of mu and var_x of the normal distribution
 - prop_params is a struct that contains the proposal parameters for the parameters
 
-3) The function for finding the best a and b values for the normal distribution
+- outputs is a struct that contains
+    - Thetas, a 2 x M matrix that contains the samples of MHAAR for mu_x and std_x
+    - sigma_q_mu_vec: proposal std's for the random walk proposal of mu_x
+    - sigma_q_std_vec: proposal std's for the random walk proposal of std_x
+
+3) The function for finding the best a and b values for the standard normal distribution in terms of the Fisher information matrix of
+Y = Truncate(X; a, b) + (b-a)*Laplace(1/epsilon)
 
 [A_max, B_max, FIM_all] = find_best_a_b_norm(eps_DP, AB_lims,...
     n, N, R, score_fn, symmetric_int)
